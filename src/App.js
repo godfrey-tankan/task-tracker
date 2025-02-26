@@ -1,22 +1,17 @@
+import React, { useState } from "react";
+import TaskList from "./components/TaskList";
+import TaskForm from "./components/TaskForm";
 
-function App() {
+const App = () => {
+  const [reload, setReload] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Task Manager</h1>
+      <TaskForm onTaskAdded={() => setReload(!reload)} />
+      <TaskList reload={reload} />
     </div>
   );
-}
+};
 
 export default App;
