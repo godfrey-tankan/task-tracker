@@ -1,17 +1,18 @@
-import React from "react";
-
 const TaskItem = ({ task, onDelete, onToggle }) => {
     return (
-        <li style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => onToggle(task.id)}
-            />
-            <span style={{ textDecoration: task.completed ? "line-through" : "none" }}>
+        <li className="flex justify-between items-center bg-white p-4 mb-2 shadow-sm rounded-md">
+            <span
+                className={`cursor-pointer ${task.completed ? "line-through text-gray-500" : ""}`}
+                onClick={() => onToggle(task.id)}
+            >
                 {task.title}
             </span>
-            <button onClick={() => onDelete(task.id)} style={{ color: "red" }}>❌</button>
+            <button
+                className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-700"
+                onClick={() => onDelete(task.id)}
+            >
+                Delete
+            </button>
         </li>
     );
 };

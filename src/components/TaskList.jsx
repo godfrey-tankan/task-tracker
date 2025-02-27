@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TaskItem from "./TaskItem";
+import "../index.css"; // Import Tailwind styles
+
 
 const TaskList = ({ reload }) => {
     const [tasks, setTasks] = useState([]);
@@ -9,7 +11,7 @@ const TaskList = ({ reload }) => {
         axios.get("http://127.0.0.1:8000/api/tasks/")
             .then(response => setTasks(response.data))
             .catch(error => console.error("Error fetching tasks:", error));
-    }, [reload]); // Reloads when new task is added
+    }, [reload]); // Reloads when a new task is added
 
     const deleteTask = async (id) => {
         await axios.delete(`http://127.0.0.1:8000/api/tasks/${id}/`);
@@ -23,8 +25,8 @@ const TaskList = ({ reload }) => {
     };
 
     return (
-        <div>
-            <h2>Task List</h2>
+        <div className="max-w-md mx-auto bg-gray-100 shadow-md p-6 rounded-lg">
+            <h2 className="text-xl font-bold mb-4">Task List</h2>
             <ul>
                 {tasks.map(task => (
                     <TaskItem key={task.id} task={task} onDelete={deleteTask} onToggle={toggleTask} />
